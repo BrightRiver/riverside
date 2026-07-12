@@ -3,9 +3,9 @@
 	"id": "riverside",
 	"version": "${version}",
 	"name": "riverside",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "a new experience in farming and life within minecraft",
 	"authors": [
-		"Me!"
+		"ScornedRiver http://twitch.tv/scorned_river"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

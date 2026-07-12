@@ -6,6 +6,10 @@ import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import scorned.riverside.block.ModBlocks;
+import scorned.riverside.block.entity.ModBlockEntities;
+import scorned.riverside.item.ModItems;
+import scorned.riverside.tab.ModCreativeModeTabs;
 
 public class Riverside implements ModInitializer {
 	public static final String MOD_ID = "riverside";
@@ -17,11 +21,11 @@ public class Riverside implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Initializing Mod + " + MOD_ID);
+		ModCreativeModeTabs.initialize();
+		ModItems.initialize();
+		ModBlocks.initialize();
+		ModBlockEntities.initialize();
 	}
 
 	public static Identifier id(String path) {
