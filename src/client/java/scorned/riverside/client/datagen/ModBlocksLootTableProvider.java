@@ -25,6 +25,13 @@ public class ModBlocksLootTableProvider extends FabricBlockLootSubProvider {
         dropSelf(ModBlocks.OLIVE_STAIR);
         dropSelf(ModBlocks.OLIVE_BUTTON);
         dropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
+//        dropSelf(ModBlocks.OLIVE_HANGING_SIGN);
+        dropSelf(ModBlocks.OLIVE_SIGN);
+        dropSelf(ModBlocks.OLIVE_TRAPDOOR);
+        dropSelf(ModBlocks.OLIVE_DOOR);
+
+//        dropOther(ModBlocks.OLIVE_WALL_HANGING_SIGN, ModBlocks.OLIVE_HANGING_SIGN);
+//        dropOther(ModBlocks.OLIVE_WALL_SIGN, ModBlocks.OLIVE_SIGN);
 
         add(ModBlocks.OLIVE_SLAB, this::createSlabItemTable);
     }

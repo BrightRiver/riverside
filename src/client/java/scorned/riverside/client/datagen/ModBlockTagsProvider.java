@@ -3,7 +3,9 @@ package scorned.riverside.client.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import scorned.riverside.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -29,7 +31,13 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
                 .add(ModBlocks.getRK(ModBlocks.OLIVE_SHELF))
                 .add(ModBlocks.getRK(ModBlocks.OLIVE_STAIR))
                 .add(ModBlocks.getRK(ModBlocks.OLIVE_BUTTON))
-                .add(ModBlocks.getRK(ModBlocks.OLIVE_PRESSURE_PLATE));
+                .add(ModBlocks.getRK(ModBlocks.OLIVE_PRESSURE_PLATE))
+                .add(ModBlocks.getRK(ModBlocks.OLIVE_SIGN))
+//                .add(ModBlocks.getRK(ModBlocks.OLIVE_WALL_SIGN))
+                .add(ModBlocks.getRK(ModBlocks.OLIVE_HANGING_SIGN))
+                .add(ModBlocks.getRK(ModBlocks.OLIVE_TRAPDOOR))
+                .add(ModBlocks.getRK(ModBlocks.OLIVE_DOOR));
+;
 
         tag(BlockTags.STAIRS).add(ModBlocks.getRK(ModBlocks.OLIVE_STAIR));
         tag(BlockTags.SLABS).add(ModBlocks.getRK(ModBlocks.OLIVE_SLAB));
@@ -38,6 +46,16 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
         tag(BlockTags.FENCES).add(ModBlocks.getRK(ModBlocks.OLIVE_FENCE));
         tag(BlockTags.WALLS).add(ModBlocks.getRK(ModBlocks.OLIVE_WALL));
         tag(BlockTags.FENCE_GATES).add(ModBlocks.getRK(ModBlocks.OLIVE_FENCE_GATE));
+
+        tag(BlockTags.STANDING_SIGNS).add(ModBlocks.getRK(ModBlocks.OLIVE_SIGN));
+        tag(BlockTags.CEILING_HANGING_SIGNS).add(ModBlocks.getRK(ModBlocks.OLIVE_HANGING_SIGN));
+
+        tag(BlockTags.TRAPDOORS).add(ModBlocks.getRK(ModBlocks.OLIVE_TRAPDOOR));
+        tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.getRK(ModBlocks.OLIVE_TRAPDOOR));
+
+
+        tag(BlockTags.WOODEN_DOORS).add(ModBlocks.getRK(ModBlocks.OLIVE_DOOR));
+        tag(BlockTags.DOORS).add(ModBlocks.getRK(ModBlocks.OLIVE_DOOR));
 
     }
 }
