@@ -1,0 +1,14 @@
+// 26.2	-999999999-01-01T00:00:00	riverside/Tags for minecraft:block
+d21434fb8dfa483fa557df99be23f993abb9442d data/minecraft/tags/block/ceiling_hanging_signs.json
+9b007e5c7d54422b81e9585f5d12ca1310f9c275 data/minecraft/tags/block/doors.json
+1409107f888b2a621f6a3167e6a32de50a5c4a05 data/minecraft/tags/block/fence_gates.json
+9e01b5f457e801cb2ebf26331cfba5fb41c85452 data/minecraft/tags/block/fences.json
+e18cd16ceef396f980a1b956b0baa2931e9a9728 data/minecraft/tags/block/mineable/axe.json
+228506b14f028360f90827c9f882023f0ea972bf data/minecraft/tags/block/slabs.json
+4355816358b9fe3923460af5cac7db9fbbabe74c data/minecraft/tags/block/stairs.json
+280603d6f36e5754e4e17bf32dec867aaaa6f0f2 data/minecraft/tags/block/standing_signs.json
+f1c7c7fcf3c3bf934a9ca66b9f5a0169e0e17285 data/minecraft/tags/block/trapdoors.json
+e195c4d2ac4867e0e9ccec3ca974dc499aed739f data/minecraft/tags/block/walls.json
+9b007e5c7d54422b81e9585f5d12ca1310f9c275 data/minecraft/tags/block/wooden_doors.json
+ed9678e6649876326743e4adcc70848bb396eaea data/minecraft/tags/block/wooden_shelves.json
+f1c7c7fcf3c3bf934a9ca66b9f5a0169e0e17285 data/minecraft/tags/block/wooden_trapdoors.json

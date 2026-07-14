@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "riverside:block/olive_door_bottom",
+    "top": "riverside:block/olive_door_top"
+  }
+}

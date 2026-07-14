@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "riverside:block/olive_wall_hanging_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "riverside:block/olive_wall_hanging_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "riverside:block/olive_wall_hanging_sign"
+    },
+    "facing=west": {
+      "model": "riverside:block/olive_wall_hanging_sign",
+      "y": 90
+    }
+  }
+}

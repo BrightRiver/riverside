@@ -1,0 +1,20 @@
+{
+  "values": [
+    "riverside:olive_planks",
+    "riverside:olive_wood",
+    "riverside:olive_log",
+    "riverside:stripped_olive_wood",
+    "riverside:stripped_olive_log",
+    "riverside:olive_fence",
+    "riverside:olive_wall",
+    "riverside:olive_slab",
+    "riverside:olive_shelf",
+    "riverside:olive_stair",
+    "riverside:olive_button",
+    "riverside:olive_pressure_plate",
+    "riverside:olive_sign",
+    "riverside:olive_ceiling_hanging_sign",
+    "riverside:olive_trapdoor",
+    "riverside:olive_door"
+  ]
+}
