@@ -33,7 +33,8 @@ bin/
 run/
 
 # java
-
+/src/main/generated/
+*/generated/*
 hs_err_*.log
 replay_*.log
 *.hprof

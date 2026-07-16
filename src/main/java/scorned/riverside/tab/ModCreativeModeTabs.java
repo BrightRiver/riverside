@@ -36,10 +36,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.OLIVE_PRESSURE_PLATE);
                         output.accept(ModBlocks.OLIVE_SIGN);
                         output.accept(ModItems.OLIVE_HANGING_SIGN);
-
                         output.accept(ModBlocks.OLIVE_DOOR);
                         output.accept(ModBlocks.OLIVE_TRAPDOOR);
-//                        output.accept(ModBlocks.OLIVE_HANGING_SIGN);
                     })
                     .build());
 

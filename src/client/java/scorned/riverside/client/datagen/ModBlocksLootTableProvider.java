@@ -3,7 +3,9 @@ package scorned.riverside.client.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.world.level.block.Block;
 import scorned.riverside.block.ModBlocks;
+import scorned.riverside.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -25,8 +27,8 @@ public class ModBlocksLootTableProvider extends FabricBlockLootSubProvider {
         dropSelf(ModBlocks.OLIVE_STAIR);
         dropSelf(ModBlocks.OLIVE_BUTTON);
         dropSelf(ModBlocks.OLIVE_PRESSURE_PLATE);
-//        dropSelf(ModBlocks.OLIVE_HANGING_SIGN);
-        dropSelf(ModBlocks.OLIVE_SIGN);
+        dropSelf(Block.byItem(ModItems.OLIVE_HANGING_SIGN));
+        dropSelf(Block.byItem(ModItems.OLIVE_SIGN));
         dropSelf(ModBlocks.OLIVE_TRAPDOOR);
         dropSelf(ModBlocks.OLIVE_DOOR);
 

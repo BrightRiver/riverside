@@ -6,6 +6,7 @@ import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import scorned.riverside.block.ModBlockFamilies;
 import scorned.riverside.block.ModBlocks;
 import scorned.riverside.block.entity.ModBlockEntities;
 import scorned.riverside.item.ModItems;
@@ -26,6 +27,7 @@ public class Riverside implements ModInitializer {
 		ModItems.initialize();
 		ModBlocks.initialize();
 		ModBlockEntities.initialize();
+		ModBlockFamilies.initialize();
 	}
 
 	public static Identifier id(String path) {
