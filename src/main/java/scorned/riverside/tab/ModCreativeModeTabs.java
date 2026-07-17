@@ -38,6 +38,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.OLIVE_HANGING_SIGN);
                         output.accept(ModBlocks.OLIVE_DOOR);
                         output.accept(ModBlocks.OLIVE_TRAPDOOR);
+
+                        output.accept(ModItems.OLIVE_BOAT);
+                        output.accept(ModItems.OLIVED_CHEST_BOAT);
+
                     })
                     .build());
 

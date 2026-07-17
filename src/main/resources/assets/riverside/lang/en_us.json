@@ -1,4 +1,6 @@
 {
+  "tab.riverside.creative_tab": "Riverside",
+
   "item.riverside.olive" : "Olive",
   "item.riverside.olive_pit" : "Olive Pit",
   "item.riverside.olive_sapling" : "Olive Sapling",
@@ -24,5 +26,6 @@
   "block.riverside.olive_shelves" : "Olive Shelves",
   "block.riverside.olive_wall" : "Olive Wall",
   "block.riverside.olive_shelf" : "Olive shelf",
-  "tab.riverside.creative_tab": "Riverside"
+  "item.riverside.olive_boat" : "Olive Boat",
+  "item.riverside.olive_chest_boat" : "Olive Chest Boat"
 }

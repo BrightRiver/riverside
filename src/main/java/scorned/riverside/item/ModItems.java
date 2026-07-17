@@ -12,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import scorned.riverside.Riverside;
 import scorned.riverside.block.ModBlocks;
+import scorned.riverside.entity.ModEntities;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -35,6 +36,12 @@ public class ModItems {
             (b, p) -> new SignItem(b, ModBlocks.OLIVE_WALL_SIGN, p),
             new Item.Properties().stacksTo(16)
     );
+
+    public static final Item OLIVE_BOAT = registerItem("olive_boat",
+            properties -> new BoatItem(ModEntities.OLIVE_BOAT, properties.stacksTo(1)));
+
+    public static final Item OLIVED_CHEST_BOAT = registerItem("olive_chest_boat",
+            properties -> new BoatItem(ModEntities.OLIVE_CHEST_BOAT, properties.stacksTo(1)));
 
     public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
         ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name));
@@ -65,7 +72,10 @@ public class ModItems {
 
     public static void initialize() {
         Riverside.LOGGER.info("Registering mod items for " + Riverside.MOD_ID);
+    }
 
-
+    private static Item registerItem(String name, Function<Item.Properties, Item> function) {
+        return Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name),
+                function.apply(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name)))));
     }
 }

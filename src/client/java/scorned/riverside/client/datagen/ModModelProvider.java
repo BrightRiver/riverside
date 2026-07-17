@@ -33,10 +33,15 @@ public class ModModelProvider extends FabricModelProvider {
                 .wood(ModBlocks.STRIPPED_OLIVE_WOOD);
 
         blockModelGenerators.createShelf(ModBlocks.OLIVE_SHELF, ModBlocks.STRIPPED_OLIVE_LOG);
+
+
     }
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerators) {
         itemModelGenerators.generateFlatItem(ModItems.OLIVE, ModelTemplates.FLAT_ITEM);
+
+        itemModelGenerators.generateFlatItem(ModItems.OLIVE_BOAT, ModelTemplates.FLAT_ITEM);
+        itemModelGenerators.generateFlatItem(ModItems.OLIVED_CHEST_BOAT, ModelTemplates.FLAT_ITEM);
     }
 }
