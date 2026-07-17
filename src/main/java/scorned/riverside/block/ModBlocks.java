@@ -161,7 +161,7 @@ public class ModBlocks {
             "olive_wall_sign",
             properties -> new WallSignBlock(WoodType.OAK,
                     properties
-                            .overrideLootTable(Block.byItem(ModItems.OLIVE_SIGN).getLootTable())
+                            .overrideLootTable(OLIVE_SIGN.getLootTable())
                             .overrideDescription(Block.byItem(ModItems.OLIVE_SIGN).getDescriptionId())
                             .mapColor(OLIVE_PLANKS.defaultMapColor())
                             .forceSolidOn()
@@ -185,9 +185,9 @@ public class ModBlocks {
 
     public static final Block OLIVE_WALL_HANGING_SIGN = registerBlock(
             "olive_wall_hanging_sign",
-            properties -> new WallHangingSignBlock(WoodType.BIRCH,
+            properties -> new WallHangingSignBlock(WoodType.OAK,
                     properties
-                            .overrideLootTable(Block.byItem(ModItems.OLIVE_HANGING_SIGN).getLootTable())
+                            .overrideLootTable(OLIVE_HANGING_SIGN.getLootTable())
                             .overrideDescription(Block.byItem(ModItems.OLIVE_HANGING_SIGN).getDescriptionId())
                             .mapColor(OLIVE_PLANKS.defaultMapColor())
                             .forceSolidOn()
@@ -195,6 +195,7 @@ public class ModBlocks {
                             .noCollision()
                             .strength(1.0F)
                             .ignitedByLava()
+
             ));
 
 

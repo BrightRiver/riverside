@@ -30,11 +30,10 @@ public class ModBlocksLootTableProvider extends FabricBlockLootSubProvider {
         dropSelf(Block.byItem(ModItems.OLIVE_HANGING_SIGN));
         dropSelf(Block.byItem(ModItems.OLIVE_SIGN));
         dropSelf(ModBlocks.OLIVE_TRAPDOOR);
-        dropSelf(ModBlocks.OLIVE_DOOR);
-
-//        dropOther(ModBlocks.OLIVE_WALL_HANGING_SIGN, ModBlocks.OLIVE_HANGING_SIGN);
-//        dropOther(ModBlocks.OLIVE_WALL_SIGN, ModBlocks.OLIVE_SIGN);
-
+//        createDoorTable(ModBlocks.OLIVE_DOOR);
+        add(ModBlocks.OLIVE_DOOR, this::createDoorTable);
+        dropSelf(ModBlocks.OLIVE_WALL_HANGING_SIGN);
+        dropSelf(ModBlocks.OLIVE_WALL_SIGN);
         add(ModBlocks.OLIVE_SLAB, this::createSlabItemTable);
     }
 }

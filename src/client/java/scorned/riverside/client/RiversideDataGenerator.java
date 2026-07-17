@@ -2,9 +2,7 @@ package scorned.riverside.client;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import scorned.riverside.client.datagen.ModBlockTagsProvider;
-import scorned.riverside.client.datagen.ModBlocksLootTableProvider;
-import scorned.riverside.client.datagen.ModModelProvider;
+import scorned.riverside.client.datagen.*;
 
 public class RiversideDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -13,6 +11,10 @@ public class RiversideDataGenerator implements DataGeneratorEntrypoint {
 
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModBlockTagsProvider::new);
+		pack.addProvider(ModItemTagsProvider::new);
 		pack.addProvider(ModBlocksLootTableProvider::new);
+
+		pack.addProvider(ModRecipeProvider::new);
+
 	}
 }

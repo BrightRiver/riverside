@@ -78,4 +78,9 @@ public class ModItems {
         return Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name),
                 function.apply(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name)))));
     }
+
+
+    public static ResourceKey<Item> getRK(Item item) {
+        return BuiltInRegistries.ITEM.getResourceKey(item).get();
+    }
 }
