@@ -26,6 +26,11 @@ public class ModBlockEntities {
             Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, "olive_ceiling_hanging_sign"),
                     FabricBlockEntityTypeBuilder.create(HangingSignBlockEntity::new, Block.byItem(ModItems.OLIVE_HANGING_SIGN)).build());
 
+    public static final BlockEntityType<PicklingVesselBlockEntity> PICKLING_VESSEL =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+                    Identifier.fromNamespaceAndPath(Riverside.MOD_ID, "pickling_vessel_be"),
+                    FabricBlockEntityTypeBuilder.create(PicklingVesselBlockEntity::new, ModBlocks.PICKLING_VESSEL).build());
+
     public static void initialize() {
         Riverside.LOGGER.info("Registering Mod Block Entities for " + Riverside.MOD_ID);
         BlockEntityTypes.SHELF.addValidBlock(ModBlocks.OLIVE_SHELF);

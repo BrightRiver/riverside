@@ -131,10 +131,7 @@ public class PicklingVesselRenderer implements BlockEntityRenderer<PicklingVesse
         return new PicklingVesselRenderState();
     }
 
-    @Override
-    public void submit(PicklingVesselRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
 
-    }
 
     public void extractRenderState(final PicklingVesselBlockEntity blockEntity, final PicklingVesselRenderState state, final float partialTicks, final Vec3 cameraPosition, final ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
@@ -149,11 +146,11 @@ public class PicklingVesselRenderer implements BlockEntityRenderer<PicklingVesse
 
     }
 
-    public void submit(final DecoratedPotRenderState state, final PoseStack poseStack, final SubmitNodeCollector submitNodeCollector, final CameraRenderState camera) {
+    public void submit(final PicklingVesselRenderState state, final PoseStack poseStack, final SubmitNodeCollector submitNodeCollector, final CameraRenderState camera) {
         poseStack.pushPose();
         poseStack.mulPose(modelTransformation(state.direction));
         if (state.wobbleProgress >= 0.0F && state.wobbleProgress <= 1.0F) {
-            if (state.wobbleStyle == DecoratedPotBlockEntity.WobbleStyle.POSITIVE) {
+            if (state.wobbleStyle == PicklingVesselBlockEntity.WobbleStyle.POSITIVE) {
                 float amplitude = 0.015625F;
                 float deltaTime = state.wobbleProgress * ((float)Math.PI * 2F);
                 float tiltX = -1.5F * (Mth.cos((double)deltaTime) + 0.5F) * Mth.sin((double)(deltaTime / 2.0F));

@@ -59,13 +59,17 @@ public class DecoratedPotBlockMixin {
                 System.out.println(decorations);
 
 
-//                PicklingVesselBlockEntity.createPicklingVesselInstance(decorations);
                 new PicklingVesselBlockEntity(pos, ModBlocks.PICKLING_VESSEL.defaultBlockState());
                 level.setBlock(
                         pos,
                         ModBlocks.PICKLING_VESSEL.defaultBlockState(),
                         3
                 );
+
+                if (level.getBlockEntity(pos) instanceof PicklingVesselBlockEntity vessel) {
+                    vessel.setDecorations(decorations);
+                    vessel.setChanged();
+                }
 
                 if (!player.isCreative()) {
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));

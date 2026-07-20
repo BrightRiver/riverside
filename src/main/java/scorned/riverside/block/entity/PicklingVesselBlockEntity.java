@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -54,6 +53,11 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
         if (!this.trySaveLootTable(output) && !this.item.isEmpty()) {
             output.store("item", ItemStack.CODEC, this.item);
         }
+    }
+
+
+    public void setDecorations (PotDecorations decorations) {
+        this.decorations = decorations;
     }
 
     @Override
