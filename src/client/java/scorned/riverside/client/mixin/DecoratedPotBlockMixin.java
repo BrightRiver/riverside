@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DecoratedPotBlock;
 import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
 import net.minecraft.world.level.block.entity.PotDecorations;
@@ -19,7 +18,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import scorned.riverside.block.ModBlocks;import scorned.riverside.block.PicklingVesselBlock;
+import scorned.riverside.block.ModBlocks;
+import scorned.riverside.block.PicklingVesselBlock;
 import scorned.riverside.block.entity.PicklingVesselBlockEntity;
 
 @Mixin(DecoratedPotBlock.class)
@@ -56,13 +56,23 @@ public class DecoratedPotBlockMixin {
 
                 //get the existing decorations
                 PotDecorations decorations = pot.getDecorations();
-                System.out.println(decorations);
+
+                //create a new block state to copy rotation and waterlogging properties from original block to new block
+                BlockState newState = ModBlocks.PICKLING_VESSEL
+                        .defaultBlockState()
+                        .setValue(
+                                PicklingVesselBlock.HORIZONTAL_FACING,
+                                state.getValue(DecoratedPotBlock.HORIZONTAL_FACING)
+                        )
+                        .setValue(
+                                PicklingVesselBlock.WATERLOGGED,
+                                state.getValue(DecoratedPotBlock.WATERLOGGED)
+                        );
 
 
-                new PicklingVesselBlockEntity(pos, ModBlocks.PICKLING_VESSEL.defaultBlockState());
                 level.setBlock(
                         pos,
-                        ModBlocks.PICKLING_VESSEL.defaultBlockState(),
+                        newState,
                         3
                 );
 
@@ -74,9 +84,7 @@ public class DecoratedPotBlockMixin {
                 if (!player.isCreative()) {
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));
                 }
-
             }
-
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
 

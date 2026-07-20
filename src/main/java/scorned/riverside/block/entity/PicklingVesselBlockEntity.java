@@ -23,14 +23,15 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.ticks.ContainerSingleItem;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
 public class PicklingVesselBlockEntity  extends BlockEntity implements ContainerSingleItem.BlockContainerSingleItem, RandomizableContainer {
-    public static final String TAG_SHERDS = "sherds";
-    public static final String TAG_ITEM = "item";
-    public static final int EVENT_POT_WOBBLES = 1;
+//    public static final String TAG_SHERDS = "sherds";
+//    public static final String TAG_ITEM = "item";
+//    public static final int EVENT_POT_WOBBLES = 1;
     public long wobbleStartedAtTick;
     public PicklingVesselBlockEntity.@Nullable WobbleStyle lastWobbleStyle;
     private PotDecorations decorations;
@@ -44,7 +45,7 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     }
 
     @Override
-    protected void saveAdditional(final ValueOutput output) {
+    protected void saveAdditional(final @NonNull ValueOutput output) {
         super.saveAdditional(output);
         if (!this.decorations.equals(PotDecorations.EMPTY)) {
             output.store("sherds", PotDecorations.CODEC, this.decorations);
@@ -61,7 +62,7 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     }
 
     @Override
-    protected void loadAdditional(final ValueInput input) {
+    protected void loadAdditional(final @NonNull ValueInput input) {
         super.loadAdditional(input);
         this.decorations = input.read("sherds", PotDecorations.CODEC).orElse(PotDecorations.EMPTY);
         if (!this.tryLoadLootTable(input)) {
@@ -76,7 +77,7 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     }
 
     @Override
-    public CompoundTag getUpdateTag(final HolderLookup.Provider registries) {
+    public @NonNull CompoundTag getUpdateTag(final HolderLookup.@NonNull Provider registries) {
         return this.saveCustomOnly(registries);
     }
 
@@ -117,34 +118,34 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     }
 
     @Override
-    protected void collectImplicitComponents(final DataComponentMap.Builder components) {
+    protected void collectImplicitComponents(final DataComponentMap.@NonNull Builder components) {
         super.collectImplicitComponents(components);
         components.set(DataComponents.POT_DECORATIONS, this.decorations);
         components.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(List.of(this.item)));
     }
 
     @Override
-    protected void applyImplicitComponents(final DataComponentGetter components) {
+    protected void applyImplicitComponents(final @NonNull DataComponentGetter components) {
         super.applyImplicitComponents(components);
         this.decorations = components.getOrDefault(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY);
         this.item = components.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyOne();
     }
 
-    @Override
-    public void removeComponentsFromTag(final ValueOutput output) {
-        super.removeComponentsFromTag(output);
-        output.discard("sherds");
-        output.discard("item");
-    }
+//    @Override
+//    public void removeComponentsFromTag(final @NonNull ValueOutput output) {
+//        super.removeComponentsFromTag(output);
+//        output.discard("sherds");
+//        output.discard("item");
+//    }
 
     @Override
-    public ItemStack getTheItem() {
+    public @NonNull ItemStack getTheItem() {
         this.unpackLootTable(null);
         return this.item;
     }
 
     @Override
-    public ItemStack splitTheItem(final int count) {
+    public @NonNull ItemStack splitTheItem(final int count) {
         this.unpackLootTable(null);
         ItemStack result = this.item.split(count);
         if (this.item.isEmpty()) {
@@ -155,13 +156,13 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     }
 
     @Override
-    public void setTheItem(final ItemStack itemStack) {
+    public void setTheItem(final @NonNull ItemStack itemStack) {
         this.unpackLootTable(null);
         this.item = itemStack;
     }
 
     @Override
-    public BlockEntity getContainerBlockEntity() {
+    public @NonNull BlockEntity getContainerBlockEntity() {
         return this;
     }
 
