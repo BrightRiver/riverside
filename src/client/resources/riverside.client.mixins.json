@@ -3,7 +3,7 @@
 	"package": "scorned.riverside.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
-		"ExampleClientMixin"
+		"DecoratedPotBlockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

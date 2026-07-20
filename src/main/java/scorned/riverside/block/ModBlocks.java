@@ -3,6 +3,7 @@ package scorned.riverside.block;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
@@ -222,6 +223,17 @@ public class ModBlocks {
                             .ignitedByLava()
                             .pushReaction(PushReaction.DESTROY)
             ));
+
+    public static final Block PICKLING_VESSEL = registerBlock(
+            "pickling_vessel",
+            properties -> new PicklingVesselBlock(
+                    properties
+                            .mapColor(MapColor.TERRACOTTA_RED)
+                            .strength(0.0F, 0.0F)
+                            .pushReaction(PushReaction.DESTROY)
+                            .noOcclusion()
+            ));
+
 
     private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> function) {
         Block toRegister = function.apply(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name))));

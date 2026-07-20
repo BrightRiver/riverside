@@ -28,5 +28,6 @@
   "block.riverside.olive_shelf" : "Olive shelf",
   "item.riverside.olive_boat" : "Olive Boat",
   "item.riverside.olive_chest_boat" : "Olive Chest Boat",
-  "entity.riverside.olive_chest_boat" : "Olive Chest Boat"
+  "entity.riverside.olive_chest_boat" : "Olive Chest Boat",
+  "block.riverside.pickling_vessel" : "Pickling Vessel"
 }

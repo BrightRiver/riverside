@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "prefix": "entity/pickling_vessel/",
+      "source": "entity/pickling_vessel"
+    }
+  ]
+}

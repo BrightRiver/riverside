@@ -8,9 +8,11 @@ import net.minecraft.client.renderer.blockentity.ShelfRenderer;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import scorned.riverside.block.entity.ModBlockEntities;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
+import scorned.riverside.block.entity.PicklingVesselBlockEntity;
 import scorned.riverside.client.entity.ModModelLayerLocations;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import scorned.riverside.client.renderer.blockentity.PicklingVesselRenderer;
 import scorned.riverside.entity.ModEntities;
 
 public class RiversideClient implements ClientModInitializer {
@@ -25,5 +27,9 @@ public class RiversideClient implements ClientModInitializer {
 
 		EntityRenderers.register(ModEntities.OLIVE_BOAT, context -> new BoatRenderer(context, ModModelLayerLocations.OLIVE_BOAT));
 		EntityRenderers.register(ModEntities.OLIVE_CHEST_BOAT, context -> new BoatRenderer(context, ModModelLayerLocations.OLIVE_CHEST_BOAT));
+
+		BlockEntityRenderers.register(ModBlockEntities.PICKLING_VESSEL, PicklingVesselRenderer::new);
+
+//		EntityRenderers.register()
 	}
 }
