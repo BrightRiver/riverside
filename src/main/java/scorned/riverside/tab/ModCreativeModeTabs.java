@@ -42,6 +42,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.OLIVE_BOAT);
                         output.accept(ModItems.OLIVED_CHEST_BOAT);
 
+                        output.accept(ModItems.PICKLED_EGG);
+
                     })
                     .build());
 

@@ -10,6 +10,7 @@ import scorned.riverside.block.ModBlockFamilies;
 import scorned.riverside.block.ModBlocks;
 import scorned.riverside.block.entity.ModBlockEntities;
 import scorned.riverside.item.ModItems;
+import scorned.riverside.recipe.ModRecipes;
 import scorned.riverside.registries.ModStrippableBlocks;
 import scorned.riverside.tab.ModCreativeModeTabs;
 
@@ -30,6 +31,7 @@ public class Riverside implements ModInitializer {
 		ModBlockEntities.initialize();
 		ModBlockFamilies.initialize();
 		ModStrippableBlocks.initialize();
+		ModRecipes.initialize();
 	}
 
 	public static Identifier id(String path) {

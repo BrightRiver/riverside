@@ -67,7 +67,7 @@ public class PicklingVesselBlock extends BaseEntityBlock implements SimpleWaterl
     public static final BooleanProperty CRACKED = BlockStateProperties.CRACKED;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final VoxelShape SHAPE = Block.column(14.0, 0.0, 16.0);
-    private static final Integer PICKLE_AMOUNT = 16;
+    public static final Integer PICKLE_AMOUNT = 16;
 
 
     @Override

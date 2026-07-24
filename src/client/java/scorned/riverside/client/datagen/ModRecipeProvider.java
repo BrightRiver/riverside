@@ -10,6 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jspecify.annotations.NonNull;
 import scorned.riverside.block.ModBlocks;
+import scorned.riverside.client.datagen.recipe.PicklingRecipeBuilder;
 import scorned.riverside.item.ModItems;
 import scorned.riverside.tag.ModTags;
 
@@ -72,6 +73,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 signBuilder(ModItems.OLIVE_SIGN, Ingredient.of(ModBlocks.OLIVE_PLANKS));
                 hangingSignBuilder(ModItems.OLIVE_HANGING_SIGN, Ingredient.of(ModBlocks.STRIPPED_OLIVE_LOG));
 
+                PicklingRecipeBuilder.picklingRecipe(
+                        RecipeCategory.FOOD,
+                                Ingredient.of(Items.EGG),
+                                ModItems.PICKLED_EGG,
+                                1)
+
+                        .unlockedBy(getHasName(Items.EGG), has(Items.EGG))
+                        .save(output, "riverside:egg_pickling");
             }
         };
     }

@@ -43,5 +43,6 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerators.generateFlatItem(ModItems.OLIVE_BOAT, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(ModItems.OLIVED_CHEST_BOAT, ModelTemplates.FLAT_ITEM);
+        itemModelGenerators.generateFlatItem(ModItems.PICKLED_EGG, ModelTemplates.FLAT_ITEM);
     }
 }

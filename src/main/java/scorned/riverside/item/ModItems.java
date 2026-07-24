@@ -19,7 +19,10 @@ import java.util.function.Function;
 
 public class ModItems {
 
+    public static final Item PICKLED_EGG = register("pickled_egg", Item::new, new Item.Properties());
     public static final Item OLIVE = register("olive", Item::new, new Item.Properties());
+
+
 
     public static final Item OLIVE_HANGING_SIGN = registerBlock(
             BlockItemId.create(Identifier.fromNamespaceAndPath(Riverside.MOD_ID, "olive_hanging_sign")
