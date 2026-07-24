@@ -1,7 +1,7 @@
 // 26.2	-999999999-01-01T00:00:00	riverside/Block Loot Tables
 6556620ef544b02ac1c716ad9abff44231129d6d data/riverside/loot_table/blocks/olive_button.json
 4c873474496a965df839bf0ea2e702af7980f87c data/riverside/loot_table/blocks/olive_ceiling_hanging_sign.json
-a0fcd2ed71d1d9a1e6f149890630413e56486d7e data/riverside/loot_table/blocks/olive_door.json
+cef5e86fc1dfc672bdd8551c09417d08a65570ee data/riverside/loot_table/blocks/olive_door.json
 9a48c5eaf4f137631dff5d04b091e3f1d1977b99 data/riverside/loot_table/blocks/olive_fence.json
 9628c1016aad3f8fa287ced9f140987374442e84 data/riverside/loot_table/blocks/olive_log.json
 082577732a4337eeef68d7df6dbb86e7eb5a98aa data/riverside/loot_table/blocks/olive_planks.json
@@ -13,5 +13,6 @@ b91ebffa2ffb9ec3382f6d59d97d74f3ea5a9897 data/riverside/loot_table/blocks/olive_
 dda7f329c02bea4e7cf5542dd0095a08b5474213 data/riverside/loot_table/blocks/olive_trapdoor.json
 52223cf5d5a2c62d57a5784fcb180377a5f136d5 data/riverside/loot_table/blocks/olive_wall.json
 482824d9241e7b9a4d720a08c5fba71fcd2066cc data/riverside/loot_table/blocks/olive_wood.json
+94bd142b197d4f239b64cea71d4c661b77388d5b data/riverside/loot_table/blocks/pickling_vessel.json
 9ff05eb72579cfeb01ca94d7f1262d282518b68f data/riverside/loot_table/blocks/stripped_olive_log.json
 010ba8c984064d57f41e77f4e86ee8563961f06e data/riverside/loot_table/blocks/stripped_olive_wood.json

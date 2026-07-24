@@ -1,14 +1,19 @@
 // 26.2	-999999999-01-01T00:00:00	riverside/Tags for minecraft:block
+19d2ec556d77b686608719a7aff20999a8b45efb data/minecraft/tags/block/all_hanging_signs.json
+7153c5a784ad47c183ba8be0744aa218f52a028d data/minecraft/tags/block/all_signs.json
 d21434fb8dfa483fa557df99be23f993abb9442d data/minecraft/tags/block/ceiling_hanging_signs.json
 9b007e5c7d54422b81e9585f5d12ca1310f9c275 data/minecraft/tags/block/doors.json
 1409107f888b2a621f6a3167e6a32de50a5c4a05 data/minecraft/tags/block/fence_gates.json
 9e01b5f457e801cb2ebf26331cfba5fb41c85452 data/minecraft/tags/block/fences.json
-7f5c8408ead2455cf270b6387f462a9d44035fe4 data/minecraft/tags/block/mineable/axe.json
+9df0b5fcecb90f2cffa09e40d20581c03967442c data/minecraft/tags/block/mineable/axe.json
+c4e135f2f6ef699934ac25fea755635e756b26f0 data/minecraft/tags/block/planks.json
 228506b14f028360f90827c9f882023f0ea972bf data/minecraft/tags/block/slabs.json
 4355816358b9fe3923460af5cac7db9fbbabe74c data/minecraft/tags/block/stairs.json
 a4aeb8ca168a4c03b9e53ab52ab138ae204e5cc3 data/minecraft/tags/block/standing_signs.json
 f1c7c7fcf3c3bf934a9ca66b9f5a0169e0e17285 data/minecraft/tags/block/trapdoors.json
+55e0ef5e7cbe716923ee145494a47bf31c116853 data/minecraft/tags/block/wall_hanging_signs.json
 e195c4d2ac4867e0e9ccec3ca974dc499aed739f data/minecraft/tags/block/walls.json
 9b007e5c7d54422b81e9585f5d12ca1310f9c275 data/minecraft/tags/block/wooden_doors.json
 ed9678e6649876326743e4adcc70848bb396eaea data/minecraft/tags/block/wooden_shelves.json
 f1c7c7fcf3c3bf934a9ca66b9f5a0169e0e17285 data/minecraft/tags/block/wooden_trapdoors.json
+d8dbdb10576b84aca1b0d315af023f8b8648ff6c data/riverside/tags/block/olive_logs.json
