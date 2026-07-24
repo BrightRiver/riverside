@@ -11,11 +11,17 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.RandomizableContainer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.PotDecorations;
@@ -27,13 +33,15 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.ticks.ContainerSingleItem;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
+import scorned.riverside.data.ModDataComponents;
+import scorned.riverside.recipe.ModRecipes;
+import scorned.riverside.recipe.custom.PicklingRecipe;
+import scorned.riverside.recipe.custom.PicklingRecipeInput;
 
+import java.util.Optional;
 import java.util.List;
 
-public class PicklingVesselBlockEntity  extends BlockEntity implements ContainerSingleItem.BlockContainerSingleItem, RandomizableContainer {
-//    public static final String TAG_SHERDS = "sherds";
-//    public static final String TAG_ITEM = "item";
-//    public static final int EVENT_POT_WOBBLES = 1;
+public class PicklingVesselBlockEntity extends BlockEntity implements ContainerSingleItem.BlockContainerSingleItem, RandomizableContainer {
     public long wobbleStartedAtTick;
     public PicklingVesselBlockEntity.@Nullable WobbleStyle lastWobbleStyle;
     private PotDecorations decorations;
@@ -42,19 +50,34 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     protected long lootTableSeed;
 
 
-
     private int pickleAge = 0;
     private boolean isActive = false;
     private int lastChecked;
 
 
-    public int pickleAge () {return this.pickleAge;}
-    public boolean isActive () {return this.isActive;}
-    public int lastChecked () {return this.lastChecked;}
+    public int pickleAge() {
+        return this.pickleAge;
+    }
 
-    public void setPickleAge (int pickleAge ) {this.pickleAge = pickleAge;}
-    public void setIsActive (boolean isActive ) {this.isActive = isActive;}
-    public void setLastChecked (int lastChecked ) {this.lastChecked = lastChecked;}
+    public boolean isActive() {
+        return this.isActive;
+    }
+
+    public int lastChecked() {
+        return this.lastChecked;
+    }
+
+    public void setPickleAge(int pickleAge) {
+        this.pickleAge = pickleAge;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public void setLastChecked(int lastChecked) {
+        this.lastChecked = lastChecked;
+    }
 
     public PicklingVesselBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
         super(ModBlockEntities.PICKLING_VESSEL, worldPosition, blockState);
@@ -88,7 +111,7 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
             return;
         }
 
-        int currentDay = (int)(level.getGameTime() / 24000L);
+        int currentDay = (int) (level.getGameTime() / 24000L);
         if (currentDay == vessel.lastChecked()) {
             return;
         }
@@ -107,7 +130,7 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     }
 
 
-    public void setDecorations (PotDecorations decorations) {
+    public void setDecorations(PotDecorations decorations) {
         this.decorations = decorations;
     }
 
@@ -178,11 +201,83 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
         components.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(List.of(this.item)));
     }
 
+
+    public boolean hasRecipe(ItemStack input) {
+        assert level != null;
+        Optional<RecipeHolder<PicklingRecipe>> recipe = ((ServerLevel) level).recipeAccess().getRecipeFor(ModRecipes.PICKLING_TYPE, new PicklingRecipeInput(input), level);
+        return recipe.isPresent();
+    }
+
     @Override
     protected void applyImplicitComponents(final @NonNull DataComponentGetter components) {
         super.applyImplicitComponents(components);
         this.decorations = components.getOrDefault(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY);
         this.item = components.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyOne();
+    }
+
+    public InteractionResult bottlePickle(
+            Player player,
+            final @NonNull InteractionHand hand,
+            Level level,
+            BlockPos pos
+    ) {
+        if (!isActive()) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        }
+
+        //return original items
+        if (pickleAge() < 1) {
+            ItemStack stored = getTheItem();
+            if (!stored.isEmpty()) {
+                Containers.dropItemStack(
+                        level,
+                        pos.getX(),
+                        pos.getY(),
+                        pos.getZ(),
+                        stored
+                );
+            }
+            reset();
+            return InteractionResult.SUCCESS;
+
+        }
+
+        Optional<RecipeHolder<PicklingRecipe>> recipe =
+                getCurrentRecipe();
+
+        if (recipe.isEmpty()) {
+            return InteractionResult.FAIL;
+        }
+
+        ItemStack result = recipe.get()
+                .value()
+                .assemble(new PicklingRecipeInput(getTheItem()));
+        result.set(ModDataComponents.PICKLE_AGE, pickleAge());
+
+        player.getItemInHand(hand).consumeAndReturn(1, player);
+        player.addItem(result);
+
+        reset();
+        return InteractionResult.SUCCESS;
+
+    }
+
+    private Optional<RecipeHolder<PicklingRecipe>> getCurrentRecipe() {
+        assert level != null;
+        return ((ServerLevel) level).recipeAccess()
+                .getRecipeFor(ModRecipes.PICKLING_TYPE, new PicklingRecipeInput(getTheItem()), level);
+    }
+
+    private void reset() {
+        setPickleAge(0);
+        setIsActive(false);
+        setLastChecked(0);
+        setTheItem(ItemStack.EMPTY);
+        setChanged();
+
+        if (level != null) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 
     @Override

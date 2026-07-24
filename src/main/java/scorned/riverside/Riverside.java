@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import scorned.riverside.block.ModBlockFamilies;
 import scorned.riverside.block.ModBlocks;
 import scorned.riverside.block.entity.ModBlockEntities;
+import scorned.riverside.data.ModDataComponents;
 import scorned.riverside.item.ModItems;
 import scorned.riverside.recipe.ModRecipes;
 import scorned.riverside.registries.ModStrippableBlocks;
@@ -32,6 +33,7 @@ public class Riverside implements ModInitializer {
 		ModBlockFamilies.initialize();
 		ModStrippableBlocks.initialize();
 		ModRecipes.initialize();
+		ModDataComponents.initialize();
 	}
 
 	public static Identifier id(String path) {

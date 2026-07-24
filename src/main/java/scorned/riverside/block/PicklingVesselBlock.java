@@ -53,7 +53,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
-import scorned.riverside.Riverside;
 import scorned.riverside.block.entity.ModBlockEntities;
 import scorned.riverside.block.entity.PicklingVesselBlockEntity;
 import scorned.riverside.tag.ModTags;
@@ -131,78 +130,82 @@ public class PicklingVesselBlock extends BaseEntityBlock implements SimpleWaterl
             if (level.isClientSide()) {
                 return InteractionResult.SUCCESS;
             }
-
-            if (!itemStack.isEmpty()
-                    && itemStack.is(Items.SPYGLASS)
-            ) {
-
-
-                player.sendSystemMessage(
-                        Component.literal("Pickling Vessel")
-                );
-
-                if (picklingVessel.isActive()) {
-                    player.sendSystemMessage(
-                            Component.literal("Contents: ") .append(picklingVessel.getTheItem().getHoverName())
-                    );
-
-                    if (picklingVessel.pickleAge() == 1) {
-                        player.sendSystemMessage(
-                                Component.literal("Age: 1 day")
-                        );
-                    } else {
-                        player.sendSystemMessage(
-                                Component.literal("Age: " + picklingVessel.pickleAge() + " days")
-                        );
-                    }
-                } else {
-                    player.sendSystemMessage(
-                            Component.literal("Ready to pickle")
-                    );
-                }
-
-                Riverside.LOGGER.info(String.valueOf(picklingVessel.lastChecked()));
-                Riverside.LOGGER.info(picklingVessel.getTheItem().toString());
-                Riverside.LOGGER.info(String.valueOf(picklingVessel.isActive()));
-                Riverside.LOGGER.info(String.valueOf(picklingVessel.pickleAge()));
-            }
-
-            if (!itemStack.isEmpty()
-                    && picklingVessel.getTheItem().isEmpty()
-                    && itemStack.getCount() >= PICKLE_AMOUNT
-                    && itemStack.is(ModTags.Items.PICKLEABLE)
-            ) {
-                picklingVessel.wobble(PicklingVesselBlockEntity.WobbleStyle.POSITIVE);
-                player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
-                ItemStack awardedItem = itemStack.consumeAndReturn(PICKLE_AMOUNT, player);
-                picklingVessel.setTheItem(awardedItem);
-
-                picklingVessel.setLastChecked((int) (level.getGameTime()) / 24000);
-                picklingVessel.setIsActive(true);
-
-                level.playSound(null, pos, SoundEvents.DECORATED_POT_INSERT, SoundSource.BLOCKS, 1.0F, 0.9F);
-                if (level instanceof ServerLevel serverLevel) {
-                    serverLevel.sendParticles(ParticleTypes.DUST_PLUME, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 7, 0.0, 0.0, 0.0, 0.0);
-                }
-
-                picklingVessel.setChanged();
-                level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-
-                level.sendBlockUpdated(
-                        pos,
-                        state,
-                        state,
-                        3
-                );
-
-                return InteractionResult.SUCCESS;
-            } else {
+            if (itemStack.isEmpty()) {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
+
+            if (itemStack.is(Items.SPYGLASS)) {
+                debugOutput(player, picklingVessel);
+            }
+
+            if (picklingVessel.getTheItem().isEmpty()
+                    && itemStack.getCount() >= PICKLE_AMOUNT
+                    && picklingVessel.hasRecipe(itemStack)
+                    && itemStack.is(ModTags.Items.PICKLEABLE)
+            ) {
+                return startPickling(picklingVessel, player, itemStack, level, pos, state);
+            }
+
+            if (itemStack.is(Items.GLASS_BOTTLE)) {
+                return picklingVessel.bottlePickle(player, hand, level, pos);
+            }
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+
         } else {
             return InteractionResult.PASS;
         }
     }
+
+    public void debugOutput(Player player, PicklingVesselBlockEntity picklingVessel) {
+        player.sendSystemMessage(Component.literal("Pickling Vessel"));
+        player.sendSystemMessage(Component.literal("_______________________"));
+
+        if (picklingVessel.isActive()) {
+            player.sendSystemMessage(Component.literal("Contents: ").append(picklingVessel.getTheItem().getHoverName()));
+            if (picklingVessel.pickleAge() == 1) {
+                player.sendSystemMessage(Component.literal("Age: 1 day"));
+            } else {
+                player.sendSystemMessage(Component.literal("Age: " + picklingVessel.pickleAge() + " days"));
+            }
+        } else {
+            player.sendSystemMessage(Component.literal("Ready to pickle"));
+        }
+        player.sendSystemMessage(Component.literal("_______________________"));
+    }
+
+    private InteractionResult startPickling(
+            PicklingVesselBlockEntity picklingVessel,
+            Player player,
+            ItemStack itemStack,
+            Level level,
+            BlockPos pos,
+            BlockState state) {
+        picklingVessel.wobble(PicklingVesselBlockEntity.WobbleStyle.POSITIVE);
+        player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
+        ItemStack awardedItem = itemStack.consumeAndReturn(PICKLE_AMOUNT, player);
+        picklingVessel.setTheItem(awardedItem);
+
+        picklingVessel.setLastChecked((int) (level.getGameTime()) / 24000);
+        picklingVessel.setIsActive(true);
+
+        level.playSound(null, pos, SoundEvents.DECORATED_POT_INSERT, SoundSource.BLOCKS, 1.0F, 0.9F);
+        if (level instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(ParticleTypes.DUST_PLUME, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 7, 0.0, 0.0, 0.0, 0.0);
+        }
+
+        picklingVessel.setChanged();
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+        level.sendBlockUpdated(
+                pos,
+                state,
+                state,
+                3
+        );
+
+        return InteractionResult.SUCCESS;
+    }
+
 
     @Override
     public void animateTick(
