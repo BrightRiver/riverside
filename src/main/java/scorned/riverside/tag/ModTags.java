@@ -19,6 +19,7 @@ public class ModTags {
 
     public static class Items {
         public static final TagKey<Item> OLIVE_LOGS = createTag("olive_logs");
+        public static final TagKey<Item> PICKLEABLE = createTag("pickleable");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Riverside.MOD_ID, name));

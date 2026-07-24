@@ -2,6 +2,8 @@ package scorned.riverside.client.mixin;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -76,6 +78,7 @@ public class DecoratedPotBlockMixin {
                         3
                 );
 
+                level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 0.9F);
                 if (level.getBlockEntity(pos) instanceof PicklingVesselBlockEntity vessel) {
                     vessel.setDecorations(decorations);
                     vessel.setChanged();

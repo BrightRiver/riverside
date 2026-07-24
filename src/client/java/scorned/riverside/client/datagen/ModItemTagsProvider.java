@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import org.jspecify.annotations.NonNull;
 import scorned.riverside.block.ModBlocks;
 import scorned.riverside.item.ModItems;
@@ -29,6 +30,8 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(ModItems.getRK(ModBlocks.STRIPPED_OLIVE_LOG.asItem()));
 
         tag(ItemTags.PLANKS).add(ModItems.getRK(ModBlocks.OLIVE_PLANKS.asItem()));
-
+        tag(ModTags.Items.PICKLEABLE)
+                .add(ModItems.getRK(Items.EGG))
+                .add(ModItems.getRK(ModItems.OLIVE));
     }
 }

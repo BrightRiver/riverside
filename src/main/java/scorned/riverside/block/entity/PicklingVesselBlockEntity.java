@@ -1,5 +1,6 @@
 package scorned.riverside.block.entity;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,6 +41,21 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
     protected @Nullable ResourceKey<LootTable> lootTable;
     protected long lootTableSeed;
 
+
+
+    private int pickleAge = 0;
+    private boolean isActive = false;
+    private int lastChecked;
+
+
+    public int pickleAge () {return this.pickleAge;}
+    public boolean isActive () {return this.isActive;}
+    public int lastChecked () {return this.lastChecked;}
+
+    public void setPickleAge (int pickleAge ) {this.pickleAge = pickleAge;}
+    public void setIsActive (boolean isActive ) {this.isActive = isActive;}
+    public void setLastChecked (int lastChecked ) {this.lastChecked = lastChecked;}
+
     public PicklingVesselBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
         super(ModBlockEntities.PICKLING_VESSEL, worldPosition, blockState);
         this.decorations = PotDecorations.EMPTY;
@@ -54,6 +71,39 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
         if (!this.trySaveLootTable(output) && !this.item.isEmpty()) {
             output.store("item", ItemStack.CODEC, this.item);
         }
+
+        output.putInt("pickleAge", this.pickleAge);
+        output.putBoolean("isActive", this.isActive);
+        output.putInt("lastChecked", this.lastChecked);
+    }
+
+    public static void tick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            PicklingVesselBlockEntity vessel
+    ) {
+
+        if (!vessel.isActive()) {
+            return;
+        }
+
+        int currentDay = (int)(level.getGameTime() / 24000L);
+        if (currentDay == vessel.lastChecked()) {
+            return;
+        }
+
+        vessel.setLastChecked(currentDay);
+        vessel.setPickleAge(vessel.pickleAge() + 1);
+
+        vessel.setChanged();
+
+        level.sendBlockUpdated(
+                pos,
+                state,
+                state,
+                3
+        );
     }
 
 
@@ -70,6 +120,10 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
         } else {
             this.item = ItemStack.EMPTY;
         }
+        this.pickleAge = input.read("pickleAge", Codec.INT).orElse(0);
+        this.isActive = input.read("isActive", Codec.BOOL).orElse(false);
+        this.lastChecked = input.read("lastChecked", Codec.INT).orElse(0);
+
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -130,13 +184,6 @@ public class PicklingVesselBlockEntity  extends BlockEntity implements Container
         this.decorations = components.getOrDefault(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY);
         this.item = components.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyOne();
     }
-
-//    @Override
-//    public void removeComponentsFromTag(final @NonNull ValueOutput output) {
-//        super.removeComponentsFromTag(output);
-//        output.discard("sherds");
-//        output.discard("item");
-//    }
 
     @Override
     public @NonNull ItemStack getTheItem() {
