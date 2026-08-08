@@ -1,17 +1,15 @@
 {
 	"schemaVersion": 1,
-	"id": "riverside",
+	"id": "riverside_wood_walls",
 	"version": "${version}",
-	"name": "riverside",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Riverside: Wood Walls",
+	"description": "Wall blocks added to every vanilla wood type",
 	"authors": [
 		"Scorned_River"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/riverside/icon.png",
 	"environment": "*",
 	"entrypoints": {
