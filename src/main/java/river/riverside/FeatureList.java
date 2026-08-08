@@ -7,10 +7,10 @@ import river.riverside.feature.wood_walls.WoodWallsData;
 public class FeatureList {
 
     public static void initializeFeatures() {
-        //add feature registration calls here
+        WoodWalls.initialize();
     }
 
     public static void generateData(PackProviders providers) {
-        //add feature data generation calls here
+        new WoodWallsData(providers);
     }
 }
