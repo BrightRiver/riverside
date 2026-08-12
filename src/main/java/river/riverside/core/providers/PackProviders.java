@@ -4,10 +4,11 @@ import java.util.Objects;
 
 public class PackProviders {
     ModelProvider modelProvider;
-    BlockTagProvider tagProvider;
+    BlockTagProvider blockTagProvider;
     BlockLootProvider lootProvider;
     RecipeProvider recipeProvider;
     LanguageProvider languageProvider;
+    ItemTagProvider itemTagProvider;
 
     public PackProviders modelProvider(ModelProvider modelProvider) {
         this.modelProvider = modelProvider;
@@ -20,14 +21,25 @@ public class PackProviders {
     }
 
 
-    public PackProviders tagProvider(BlockTagProvider tagProvider) {
-        this.tagProvider = tagProvider;
+    public PackProviders blockTagProvider(BlockTagProvider tagProvider) {
+        this.blockTagProvider = tagProvider;
         return this;
     }
 
-    public BlockTagProvider tagProvider() {
-        Objects.requireNonNull(tagProvider, "TagProvider has not been registered.");
-        return tagProvider;
+    public BlockTagProvider blockTagProvider() {
+        Objects.requireNonNull(blockTagProvider, "BlockTagProvider has not been registered.");
+        return blockTagProvider;
+    }
+
+
+    public PackProviders itemTagProvider(ItemTagProvider tagProvider) {
+        this.itemTagProvider = tagProvider;
+        return this;
+    }
+
+    public ItemTagProvider itemTagProvider() {
+        Objects.requireNonNull(itemTagProvider, "BlockTagProvider has not been registered.");
+        return itemTagProvider;
     }
 
     public PackProviders lootProvider(BlockLootProvider lootProvider) {

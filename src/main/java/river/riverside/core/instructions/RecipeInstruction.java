@@ -1,6 +1,8 @@
 package river.riverside.core.instructions;
 
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
@@ -11,17 +13,34 @@ import java.util.Map;
 public class RecipeInstruction {
 
     public enum RecipeType {
-        SHAPED
+        SHAPED,
+        WOOD,
+        PLANKS,
+        STAIR,
+        SLAB,
+        BUTTON,
+        PRESSURE_PLATE,
+        FENCE,
+        GATE,
+        DOOR,
+        TRAPDOOR,
+        BOAT,
+        CHEST_BOAT,
+        SIGN,
+        HANGING_SIGN,
+        SHELF
     }
 
     private RecipeType type = RecipeType.SHAPED;
     private RecipeCategory category;
     private String group;
     private ItemLike target;
+    private TagKey<Item> tagKey;
     private int count = 1;
     private ItemLike unlockItem;
     private final List<String> pattern = new ArrayList<>();
     private final Map<Character, ItemLike> ingredients = new LinkedHashMap<>();
+    private ItemLike baseBlock;
 
     public RecipeInstruction type(RecipeType type) {
         this.type = type;
@@ -90,6 +109,23 @@ public class RecipeInstruction {
         ingredients.put(symbol, ingredient);
         return this;
     }
+
+    public RecipeInstruction tagKey(TagKey<Item> tagKey){
+        this.tagKey = tagKey;
+        return this;
+    }
+    public TagKey<Item> tagKey(){
+        return tagKey;
+    }
+
+    public RecipeInstruction baseBlock(ItemLike baseBlock){
+        this.baseBlock = baseBlock;
+        return this;
+    }
+    public ItemLike baseBlock(){
+        return baseBlock;
+    }
+
 
     public Map<Character, ItemLike> ingredients() {
         return ingredients;

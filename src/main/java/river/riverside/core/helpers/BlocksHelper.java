@@ -1,4 +1,4 @@
-package river.riverside.core;
+package river.riverside.core.helpers;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,7 +14,7 @@ import river.riverside.Riverside;
 
 import java.util.function.Function;
 
-public class Blocks {
+public class BlocksHelper {
 
     public static @NonNull Block registerBlock(String name, @NonNull Function<BlockBehaviour.Properties, Block> function) {
         Identifier id = Riverside.id(name);

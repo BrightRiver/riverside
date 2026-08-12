@@ -3,7 +3,7 @@ package river.riverside.core.instructions;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.resources.ResourceKey;
-import river.riverside.core.Blocks;
+import river.riverside.core.helpers.BlocksHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class BlockTagInstruction {
     private final List<TagKey<Block>> tags = new ArrayList<>();
 
     public BlockTagInstruction target(Block b) {
-        targetKey = Blocks.getRK(b);
+        targetKey = BlocksHelper.getRK(b);
         return this;
     }
 

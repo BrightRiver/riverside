@@ -27,6 +27,13 @@ public class BlockLootProvider extends FabricBlockLootSubProvider {
             switch (instruction.dropType()) {
                 case SELF :
                     dropSelf(instruction.target());
+                    break;
+                case DOOR:
+                    add(instruction.target(), this::createDoorTable);
+                    break;
+                case SLAB:
+                    add(instruction.target(), this::createSlabItemTable);
+                    break;
             }
         }
     }

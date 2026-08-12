@@ -5,9 +5,11 @@ import net.minecraft.world.level.block.Block;
 public class BlockLootInstruction {
 
     public enum DropType {
-        SELF,
+        CUSTOM,
+        DOOR,
         OTHER,
-        CUSTOM
+        SELF,
+        SLAB
     }
 
     private DropType dropType = DropType.SELF;
@@ -35,5 +37,10 @@ public class BlockLootInstruction {
 
     public DropType dropType() {
         return dropType;
+    }
+
+    public BlockLootInstruction dropType(DropType dropType) {
+        this.dropType = dropType;
+        return this;
     }
 }
