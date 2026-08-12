@@ -3,8 +3,10 @@ package river.riverside.core.providers;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.NonNull;
 import river.riverside.core.instructions.RecipeInstruction;
@@ -34,7 +36,66 @@ public class RecipeProvider extends FabricRecipeProvider {
             public void buildRecipes() {
                 for (RecipeInstruction instruction : instructions) {
                     switch (instruction.type()) {
-                        case SHAPED -> generateShapedRecipe(instruction);
+                        case SHAPED:
+                            generateShapedRecipe(instruction);
+                            break;
+                        case PLANKS:
+                            planksFromLogs(instruction.target(), instruction.tagKey(), 4);
+                            break;
+                        case FENCE:
+                            fenceBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()))
+                                    .unlockedBy(getHasName(instruction.baseBlock()), has(instruction.baseBlock()))
+                                    .save(output);
+                            break;
+                        case GATE:
+                            fenceGateBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()))
+                                    .unlockedBy(getHasName(instruction.baseBlock()), has(instruction.baseBlock()))
+                                    .save(output);
+                            break;
+                        case STAIR:
+                            stairBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()))
+                                    .unlockedBy(getHasName(instruction.baseBlock()), has(instruction.baseBlock()))
+                                    .save(output);
+                            break;
+                        case BUTTON:
+                            buttonBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()))
+                                    .unlockedBy(getHasName(instruction.baseBlock()), has(instruction.baseBlock()))
+                                    .save(output);
+                            break;
+                        case PRESSURE_PLATE:
+                            pressurePlate(instruction.target(), instruction.baseBlock());
+                            break;
+                        case TRAPDOOR:
+                            trapdoorBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()))
+                                    .unlockedBy(getHasName(instruction.baseBlock()), has(instruction.baseBlock()))
+                                    .save(output);
+                            break;
+                        case SIGN:
+                            signBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()));
+                            break;
+                        case HANGING_SIGN:
+                            hangingSignBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()));
+                            break;
+                        case DOOR:
+                            doorBuilder(instruction.target(), Ingredient.of(instruction.baseBlock()))
+                                    .unlockedBy(getHasName(instruction.baseBlock()), has(instruction.baseBlock()))
+                                    .save(output);
+                            break;
+                        case SLAB:
+                            slab(RecipeCategory.BUILDING_BLOCKS, instruction.target(), instruction.baseBlock());
+                            break;
+                        case WOOD:
+                            woodFromLogs(instruction.target(), instruction.baseBlock());
+                            break;
+                        case SHELF:
+                            shelf(instruction.target(), instruction.baseBlock());
+                            break;
+                        case BOAT :
+                            woodenBoat(instruction.target(), instruction.baseBlock());
+                            break;
+                        case CHEST_BOAT:
+                            chestBoat(instruction.target(), instruction.baseBlock());
+                            break;
                     }
                 }
             }

@@ -3,6 +3,8 @@ package river.riverside.core.providers;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
+import org.jspecify.annotations.NonNull;
+import river.riverside.core.helpers.CreativeTabsHelper;
 import river.riverside.core.instructions.LanguageInstruction;
 
 import java.util.ArrayList;
@@ -23,9 +25,11 @@ public class LanguageProvider extends FabricLanguageProvider {
     }
 
     @Override
-    public void generateTranslations(HolderLookup.Provider registries, TranslationBuilder translationBuilder) {
+    public void generateTranslations(HolderLookup.@NonNull Provider registries, TranslationBuilder translationBuilder) {
+        translationBuilder.add(CreativeTabsHelper.RIVERSIDE_TAB, "Riverside");
+
         for (LanguageInstruction instruction : instructions) {
-            translationBuilder.add(instruction.target(), instruction.englishName());
+            translationBuilder.add(instruction.target().asItem(), instruction.englishName());
         }
     }
 }

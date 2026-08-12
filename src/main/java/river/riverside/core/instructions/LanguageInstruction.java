@@ -1,18 +1,18 @@
 package river.riverside.core.instructions;
 
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.ItemLike;
 
 public class LanguageInstruction {
 
-    private Block target;
+    private ItemLike target;
     private String englishName;
 
-    public LanguageInstruction target(Block target) {
+    public LanguageInstruction target(ItemLike target) {
         this.target = target;
         return this;
     }
 
-    public Block target() {
+    public ItemLike target() {
         return target;
     }
 
