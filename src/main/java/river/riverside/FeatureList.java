@@ -1,14 +1,16 @@
 package river.riverside;
 
 import river.riverside.core.providers.PackProviders;
+import river.riverside.feature.olive_trees.OliveTrees;
+import river.riverside.feature.olive_trees.OliveTreesData;
 
 public class FeatureList {
 
     public static void initializeFeatures() {
-        //add feature registration calls here
+        OliveTrees.initialize();
     }
 
     public static void generateData(PackProviders providers) {
-        //add feature data generation calls here
+        new OliveTreesData(providers);
     }
 }

@@ -2,12 +2,7 @@ package river.riverside;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import river.riverside.core.providers.BlockLootProvider;
-import river.riverside.core.providers.ModelProvider;
-import river.riverside.core.providers.PackProviders;
-import river.riverside.core.providers.BlockTagProvider;
-import river.riverside.core.providers.RecipeProvider;
-import river.riverside.core.providers.LanguageProvider;
+import river.riverside.core.providers.*;
 
 public class RiversideDataGenerator implements DataGeneratorEntrypoint {
     @Override
@@ -18,7 +13,8 @@ public class RiversideDataGenerator implements DataGeneratorEntrypoint {
 
         providers
                 .modelProvider(pack.addProvider(ModelProvider::new))
-                .tagProvider(pack.addProvider(BlockTagProvider::new))
+                .blockTagProvider(pack.addProvider(BlockTagProvider::new))
+                .itemTagProvider(pack.addProvider(ItemTagProvider::new))
                 .lootProvider(pack.addProvider(BlockLootProvider::new))
                 .recipeProvider(pack.addProvider(RecipeProvider::new))
                 .languageProvider(pack.addProvider(LanguageProvider::new));
