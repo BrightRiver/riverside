@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "riverside_wood_walls",
+	"id": "riverside",
 	"version": "${version}",
 	"name": "Riverside: Wood Walls",
 	"description": "Wall blocks added to every vanilla wood type",
