@@ -7,7 +7,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import river.riverside.core.instructions.RecipeInstruction;
-import river.riverside.feature.olive_trees.OliveTrees;
 
 public final class StandardRecipes {
 

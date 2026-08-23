@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 public final class StandardProperties {
 
@@ -26,6 +27,27 @@ public final class StandardProperties {
                 .strength(2.0F, 3.0F)
                 .sound(SoundType.WOOD)
                 .ignitedByLava();
+    }
+
+
+    public static BlockBehaviour.Properties FloralCoverProperties(BlockBehaviour.Properties p) {
+        return  p
+                .noOcclusion()
+                .noCollision()
+                .mapColor(MapColor.PLANT)
+                .sound(SoundType.VINE)
+                .pushReaction(PushReaction.DESTROY)
+                .strength(0.2F);
+    }
+
+
+    public static BlockBehaviour.Properties woodenTrimProperties(BlockBehaviour.Properties p) {
+        return  p
+                .noOcclusion()
+                .mapColor(MapColor.WOOD)
+                .sound(SoundType.WOOD)
+                .pushReaction(PushReaction.DESTROY)
+                .strength(0.4F);
     }
 
 
