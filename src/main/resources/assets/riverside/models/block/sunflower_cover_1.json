@@ -1,0 +1,6 @@
+{
+  "parent": "riverside:block/cover",
+  "textures": {
+    "texture": "riverside:block/sunflower_cover_1"
+  }
+}
