@@ -1,0 +1,6 @@
+{
+	"parent": "riverside:block/trims/base/center_horizontal",
+	"textures": {
+		"texture": "minecraft:block/birch_planks"
+	}
+}

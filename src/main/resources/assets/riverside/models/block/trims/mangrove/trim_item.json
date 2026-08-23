@@ -1,0 +1,6 @@
+{
+	"parent": "riverside:block/trims/base/trim_item",
+	"textures": {
+		"texture": "minecraft:block/mangrove_planks"
+	}
+}

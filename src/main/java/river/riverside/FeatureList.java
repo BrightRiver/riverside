@@ -5,10 +5,10 @@ import river.riverside.core.providers.PackProviders;
 public class FeatureList {
 
     public static void initializeFeatures() {
-        WoodWalls.initialize();
+        //add feature registration calls here
     }
 
     public static void generateData(PackProviders providers) {
-        new WoodWallsData(providers);
+        //add feature data generation calls here
     }
 }
