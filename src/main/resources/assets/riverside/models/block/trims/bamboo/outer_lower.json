@@ -1,0 +1,6 @@
+{
+	"parent": "riverside:block/trims/base/outer_lower",
+	"textures": {
+		"texture": "minecraft:block/bamboo_planks"
+	}
+}

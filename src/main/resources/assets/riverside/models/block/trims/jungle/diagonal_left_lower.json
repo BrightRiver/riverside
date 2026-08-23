@@ -1,0 +1,6 @@
+{
+	"parent": "riverside:block/trims/base/diagonal_left_lower",
+	"textures": {
+		"texture": "minecraft:block/jungle_planks"
+	}
+}
