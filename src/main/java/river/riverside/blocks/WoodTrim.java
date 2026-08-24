@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 
@@ -87,6 +88,15 @@ public class WoodTrim extends TransparentBlock {
                         .setValue(OUTER_LOWER, true)
                         .setValue(INNER, 0)
         );
+    }
+
+    @Override
+    protected @NonNull VoxelShape getBlockSupportShape(
+            @NonNull BlockState state,
+            @NonNull BlockGetter level,
+            @NonNull BlockPos pos
+    ) {
+        return Shapes.empty();
     }
 
     @Override
