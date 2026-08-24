@@ -89,7 +89,7 @@ public class WoodWalls {
         CreativeTabs.acceptAfter(CreativeModeTabs.BUILDING_BLOCKS, WARPED_FENCE_GATE, WARPED_WALL);
     }
 
-    public static void initialize() {
+    public WoodWalls() {
         Riverside.LOGGER.info(Riverside.MOD_ID + ": Initializing Wood Walls");
         register_oakWalls();
         register_birchWalls();

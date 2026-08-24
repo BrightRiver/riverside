@@ -55,7 +55,7 @@ public class WoodWallsData {
 
     private static void generate_oakWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.OAK_WALL, Blocks.OAK_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.OAK_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.OAK_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.OAK_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.OAK_WALL, Blocks.OAK_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.OAK_WALL, "Oak Wall"));
@@ -63,7 +63,7 @@ public class WoodWallsData {
 
     private static void generate_birchWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.BIRCH_WALL, Blocks.BIRCH_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.BIRCH_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.BIRCH_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.BIRCH_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.BIRCH_WALL, Blocks.BIRCH_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.BIRCH_WALL, "Birch Wall"));
@@ -72,7 +72,7 @@ public class WoodWallsData {
 
     private static void generate_acaciaWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.ACACIA_WALL, Blocks.ACACIA_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.ACACIA_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.ACACIA_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.ACACIA_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.ACACIA_WALL, Blocks.ACACIA_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.ACACIA_WALL, "Acacia Wall"));
@@ -80,7 +80,7 @@ public class WoodWallsData {
 
     private static void generate_bambooWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.BAMBOO_WALL, Blocks.BAMBOO_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.BAMBOO_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.BAMBOO_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.BAMBOO_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.BAMBOO_WALL, Blocks.BAMBOO_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.BAMBOO_WALL, "Bamboo Wall"));
@@ -88,7 +88,7 @@ public class WoodWallsData {
 
     private static void generate_cherryWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.CHERRY_WALL, Blocks.CHERRY_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.CHERRY_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.CHERRY_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.CHERRY_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.CHERRY_WALL, Blocks.CHERRY_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.CHERRY_WALL, "Cherry Wall"));
@@ -96,7 +96,7 @@ public class WoodWallsData {
 
     private static void generate_crimsonWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.CRIMSON_WALL, Blocks.CRIMSON_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.CRIMSON_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.CRIMSON_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.CRIMSON_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.CRIMSON_WALL, Blocks.CRIMSON_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.CRIMSON_WALL, "Crimson Wall"));
@@ -104,7 +104,7 @@ public class WoodWallsData {
 
     private static void generate_darkOakWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.DARK_OAK_WALL, Blocks.DARK_OAK_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.DARK_OAK_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.DARK_OAK_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.DARK_OAK_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.DARK_OAK_WALL, Blocks.DARK_OAK_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.DARK_OAK_WALL, "Dark Oak Wall"));
@@ -112,7 +112,7 @@ public class WoodWallsData {
 
     private static void generate_jungleWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.JUNGLE_WALL, Blocks.JUNGLE_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.JUNGLE_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.JUNGLE_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.JUNGLE_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.JUNGLE_WALL, Blocks.JUNGLE_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.JUNGLE_WALL, "Jungle Wall"));
@@ -120,7 +120,7 @@ public class WoodWallsData {
 
     private static void generate_mangroveWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.MANGROVE_WALL, Blocks.MANGROVE_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.MANGROVE_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.MANGROVE_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.MANGROVE_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.MANGROVE_WALL, Blocks.MANGROVE_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.MANGROVE_WALL, "Mangrove Wall"));
@@ -128,7 +128,7 @@ public class WoodWallsData {
 
     private static void generate_paleOakWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.PALE_OAK_WALL, Blocks.PALE_OAK_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.PALE_OAK_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.PALE_OAK_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.PALE_OAK_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.PALE_OAK_WALL, Blocks.PALE_OAK_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.PALE_OAK_WALL, "Pale Oak Wall"));
@@ -136,7 +136,7 @@ public class WoodWallsData {
 
     private static void generate_spruceWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.SPRUCE_WALL, Blocks.SPRUCE_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.SPRUCE_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.SPRUCE_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.SPRUCE_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.SPRUCE_WALL, Blocks.SPRUCE_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.SPRUCE_WALL, "Spruce Wall"));
@@ -144,7 +144,7 @@ public class WoodWallsData {
 
     private static void generate_warpedWalls(PackProviders p) {
         p.modelProvider().add(wallModel(WoodWalls.WARPED_WALL, Blocks.WARPED_PLANKS));
-        p.tagProvider().add(wallTag(WoodWalls.WARPED_WALL));
+        p.blockTagProvider().add(wallTag(WoodWalls.WARPED_WALL));
         p.lootProvider().add(wallLoot(WoodWalls.WARPED_WALL));
         p.recipeProvider().add(wallRecipe(WoodWalls.WARPED_WALL, Blocks.WARPED_PLANKS));
         p.languageProvider().add(wallLanguage(WoodWalls.WARPED_WALL, "Warped Wall"));
