@@ -39,6 +39,15 @@ public class ItemsHelper {
                 properties.useBlockDescriptionPrefix().requiredFeatures(block.requiredFeatures()));
     }
 
+    public static Item registerBlock(
+            BlockItemId blockItemId, final Block block, final BiFunction<Block, Item.Properties, Item> itemFactory, final Item.Properties properties
+    ) {
+        return registerItem(blockItemId.item(), p -> itemFactory.apply(block, p),
+                properties.useBlockDescriptionPrefix().requiredFeatures(block.requiredFeatures()));
+    }
+
+
+
     public static Item registerItem(final ResourceKey<Item> id, final Function<Item.Properties, Item> itemFactory, final Item.Properties properties) {
         Item item = itemFactory.apply(properties.setId(id));
         if (item instanceof BlockItem blockItem) {
