@@ -2,6 +2,7 @@ package river.riverside.core.defaults;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -12,6 +13,15 @@ public final class StandardProperties {
 
     private StandardProperties() {
     }
+
+    public static BlockBehaviour.Properties saplingProperties(BlockBehaviour.Properties p) {
+        return p.mapColor(MapColor.PLANT)
+                .noCollision()
+                .randomTicks()
+                .instabreak()
+                .sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY);
+    }
+
 
     public static BlockBehaviour.Properties woodProperties(BlockBehaviour.Properties p, Block mapBlock) {
         return p.mapColor(mapBlock.defaultMapColor())
@@ -31,7 +41,7 @@ public final class StandardProperties {
 
 
     public static BlockBehaviour.Properties FloralCoverProperties(BlockBehaviour.Properties p) {
-        return  p
+        return p
                 .noOcclusion()
                 .noCollision()
                 .mapColor(MapColor.PLANT)
@@ -42,7 +52,7 @@ public final class StandardProperties {
 
 
     public static BlockBehaviour.Properties woodenTrimProperties(BlockBehaviour.Properties p) {
-        return  p
+        return p
                 .noOcclusion()
                 .mapColor(MapColor.WOOD)
                 .sound(SoundType.WOOD)
