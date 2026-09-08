@@ -50,5 +50,13 @@ public final class StandardProperties {
                 .strength(0.4F);
     }
 
+    public static BlockBehaviour.Properties stoneProperties(BlockBehaviour.Properties p, MapColor mapColor) {
+        return  p
+                .mapColor(mapColor)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .requiresCorrectToolForDrops()
+                .strength(1.5F, 6.0F);
+    }
+
 
 }

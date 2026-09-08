@@ -1,0 +1,6 @@
+{
+  "parent": "riverside:block/pillar",
+  "textures": {
+    "texture": "minecraft:block/andesite"
+  }
+}

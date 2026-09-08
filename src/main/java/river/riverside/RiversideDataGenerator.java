@@ -18,7 +18,7 @@ public class RiversideDataGenerator implements DataGeneratorEntrypoint {
 
         providers
                 .modelProvider(pack.addProvider(ModelProvider::new))
-                .tagProvider(pack.addProvider(BlockTagProvider::new))
+                .blockTagProvider(pack.addProvider(BlockTagProvider::new))
                 .lootProvider(pack.addProvider(BlockLootProvider::new))
                 .recipeProvider(pack.addProvider(RecipeProvider::new))
                 .languageProvider(pack.addProvider(LanguageProvider::new));

@@ -1,0 +1,6 @@
+{
+  "parent": "riverside:block/shallow_slope_upper_inner",
+  "textures": {
+    "texture": "minecraft:block/andesite"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "riverside:block/andesite_support",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "riverside:block/andesite_support",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "riverside:block/andesite_support",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "riverside:block/andesite_support",
+      "y": 0
+    }
+  }
+}

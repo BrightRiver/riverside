@@ -1,0 +1,6 @@
+{
+  "parent": "riverside:block/coping_side",
+  "textures": {
+    "texture": "minecraft:block/andesite"
+  }
+}

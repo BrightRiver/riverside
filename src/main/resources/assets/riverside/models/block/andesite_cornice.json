@@ -1,0 +1,6 @@
+{
+  "parent": "riverside:block/cornice",
+  "textures": {
+    "texture": "minecraft:block/andesite"
+  }
+}

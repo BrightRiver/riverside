@@ -99,7 +99,7 @@ public class ModelInstruction {
                 valid &= required(blockFamily, "block family");
                 yield valid;
             case FLAT:
-                valid &= required(item, "item");
+                valid &= required(item, "items");
                 yield valid;
             default:
                 Riverside.LOGGER.error("{} : instruction has invalid type", Riverside.MOD_ID);
