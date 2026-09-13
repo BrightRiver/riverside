@@ -28,7 +28,8 @@ public class RecipeInstruction {
         CHEST_BOAT,
         SIGN,
         HANGING_SIGN,
-        SHELF
+        SHELF,
+        STONECUTTER
     }
 
     private RecipeType type = RecipeType.SHAPED;

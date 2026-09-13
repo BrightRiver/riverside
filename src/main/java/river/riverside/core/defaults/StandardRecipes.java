@@ -106,4 +106,8 @@ public final class StandardRecipes {
     }
 
 
+    public static RecipeInstruction stoneCutter(ItemLike target, ItemLike base) {
+        return standard(RecipeInstruction.RecipeType.STONECUTTER, target, base);
+    }
+
 }

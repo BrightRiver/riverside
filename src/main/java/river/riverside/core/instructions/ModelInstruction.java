@@ -4,6 +4,7 @@ import net.minecraft.data.BlockFamily;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import river.riverside.Riverside;
+import river.riverside.feature.stoneworks.StoneWorkSet;
 
 public class ModelInstruction {
 
@@ -12,7 +13,8 @@ public class ModelInstruction {
         SHELF,
         WALL,
         WOOD_FAMILY,
-        FLAT
+        FLAT,
+        STONE_WORKS
     }
 
     private ModelType type;
@@ -22,6 +24,7 @@ public class ModelInstruction {
     private Block variant;
     private Item item;
 
+    private StoneWorkSet stoneWorkSet;
 
     public ModelInstruction type(ModelType type) {
         this.type = type;
@@ -49,6 +52,17 @@ public class ModelInstruction {
     public BlockFamily blockFamily() {
         return blockFamily;
     }
+
+
+    public ModelInstruction stoneWorkSet(StoneWorkSet stoneWorkSet) {
+        this.stoneWorkSet = stoneWorkSet;
+        return this;
+    }
+
+    public StoneWorkSet stoneWorkSet() {
+        return stoneWorkSet;
+    }
+
 
     public ModelInstruction block(Block block) {
         this.block = block;
@@ -100,6 +114,10 @@ public class ModelInstruction {
                 yield valid;
             case FLAT:
                 valid &= required(item, "item");
+                yield valid;
+            case STONE_WORKS:
+                valid &= required(stoneWorkSet, "Stone Work Set");
+                valid &= required(baseBlock, "Base Block");
                 yield valid;
             default:
                 Riverside.LOGGER.error("{} : instruction has invalid type", Riverside.MOD_ID);

@@ -96,6 +96,10 @@ public class RecipeProvider extends FabricRecipeProvider {
                         case CHEST_BOAT:
                             chestBoat(instruction.target(), instruction.baseBlock());
                             break;
+                        case STONECUTTER:
+                            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, instruction.target(), instruction.baseBlock());
+                            break;
+
                     }
                 }
             }
