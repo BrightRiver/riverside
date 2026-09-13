@@ -8,14 +8,15 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.StairsShape;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -23,8 +24,8 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Map;
 
-public class Cornice extends Block {
-
+public class Cornice extends Block implements SimpleWaterloggedBlock {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<StairsShape> SHAPE = EnumProperty.create(
             "shape",
@@ -36,14 +37,28 @@ public class Cornice extends Block {
             StairsShape.OUTER_RIGHT
     );
 
-    private static final VoxelShape SHAPE_OUTER = Shapes.or(
-            Block.column(16.0, 8.0, 16.0),
-            Block.box(0.0, 8.0, 0.0, 8.0, 16.0, 8.0)
+    private static final VoxelShape SHAPE_STRAIGHT = Shapes.or(
+            Block.box(0, 0, 0, 16, 2, 16),
+            Block.box(0, 2, 0, 16, 4, 14),
+            Block.box(0, 4, 0, 16, 5, 12),
+            Block.box(0, 5, 0, 16, 9, 10),
+            Block.box(0, 9, 0, 16, 10, 9),
+            Block.box(0, 10, 0, 16, 11, 8),
+            Block.box(0, 11, 0, 16, 13, 5),
+            Block.box(0, 13, 0, 16, 14, 4),
+            Block.box(0, 14, 0, 16, 16, 2)
     );
 
-    private static final VoxelShape SHAPE_STRAIGHT = Shapes.or(
-            SHAPE_OUTER,
-            Shapes.rotate(SHAPE_OUTER, OctahedralGroup.BLOCK_ROT_Y_90)
+    private static final VoxelShape SHAPE_OUTER = Shapes.or(
+            Block.box(0, 0, 0, 16, 2, 16),
+            Block.box(0, 2, 0, 14, 4, 14),
+            Block.box(0, 4, 0, 12, 5, 12),
+            Block.box(0, 5, 0, 10, 9, 10),
+            Block.box(0, 9, 0, 9, 10, 9),
+            Block.box(0, 10, 0, 8, 11, 8),
+            Block.box(0, 11, 0, 5, 13, 5),
+            Block.box(0, 13, 0, 4, 14, 4),
+            Block.box(0, 14, 0, 2, 16, 2)
     );
 
     private static final VoxelShape SHAPE_INNER = Shapes.or(
@@ -68,6 +83,11 @@ public class Cornice extends Block {
                         .setValue(FACING, Direction.NORTH)
                         .setValue(SHAPE, StairsShape.STRAIGHT)
         );
+    }
+
+    @Override
+    protected boolean useShapeForLightOcclusion(final BlockState state) {
+        return true;
     }
 
     @Override
@@ -97,7 +117,13 @@ public class Cornice extends Block {
         Direction facing = context.getHorizontalDirection();
 
         BlockState state = this.defaultBlockState()
-                .setValue(FACING, facing);
+                .setValue(FACING, facing)
+                .setValue(
+                        WATERLOGGED,
+                        context.getLevel()
+                                .getFluidState(context.getClickedPos())
+                                .getType() == Fluids.WATER
+                );
 
         return state.setValue(
                 SHAPE,
@@ -116,6 +142,14 @@ public class Cornice extends Block {
             @NonNull BlockState neighbourState,
             @NonNull RandomSource random
     ) {
+        if (state.getValue(WATERLOGGED)) {
+            ticks.scheduleTick(
+                    pos,
+                    Fluids.WATER,
+                    Fluids.WATER.getTickDelay(level)
+            );
+        }
+
         return directionToNeighbour.getAxis().isHorizontal()
                 ? state.setValue(
                 SHAPE,
@@ -253,11 +287,17 @@ public class Cornice extends Block {
         return super.mirror(state, mirror);
     }
 
+    @Override
+    protected @NonNull FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED)
+                ? Fluids.WATER.getSource(false)
+                : super.getFluidState(state);
+    }
 
     @Override
     protected void createBlockStateDefinition(
             StateDefinition.Builder<Block, BlockState> builder
     ) {
-        builder.add(FACING, SHAPE);
+        builder.add(FACING, SHAPE, WATERLOGGED);
     }
 }

@@ -2,6 +2,7 @@ package river.riverside;
 
 import river.riverside.core.providers.PackProviders;
 import river.riverside.feature.stoneworks.Stoneworks;
+import river.riverside.feature.stoneworks.StoneworksData;
 
 public class FeatureList {
 
@@ -12,5 +13,6 @@ public class FeatureList {
 
     public static void generateData(PackProviders providers) {
         //add feature data generation calls here
+        new StoneworksData(providers);
     }
 }

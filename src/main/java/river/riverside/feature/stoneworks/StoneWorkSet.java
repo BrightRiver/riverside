@@ -1,5 +1,6 @@
 package river.riverside.feature.stoneworks;
 
+import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.StairBlock;
 import river.riverside.core.defaults.StandardProperties;
@@ -19,6 +20,8 @@ public class StoneWorkSet {
     private Block SLOPE;
     private Block SHALLOW_SLOPE_LOWER;
     private Block SHALLOW_SLOPE_UPPER;
+
+    private TextureMapping textureMapping;
 
     private void pillar(Block base, String blockName) {
         PILLAR = BlocksHelper.registerBlock("%s_pillar".formatted(blockName),
@@ -100,10 +103,9 @@ public class StoneWorkSet {
 
     private void slope(Block base, String blockName) {
         SLOPE = BlocksHelper.registerBlock("%s_slope".formatted(blockName),
-                properties -> new StairBlock(base.defaultBlockState(), StandardProperties.stoneProperties(properties, base.defaultMapColor()).noOcclusion()));
+                properties -> new Slope(base.defaultBlockState(), StandardProperties.stoneProperties(properties, base.defaultMapColor()).noOcclusion()));
         CreativeTabsHelper.accept(CreativeTabsHelper.RIVERSIDE_TAB, SLOPE);
     }
-
 
 
     public Block slope() {
@@ -112,7 +114,7 @@ public class StoneWorkSet {
 
     private void shallowSlopeLower(Block base, String blockName) {
         SHALLOW_SLOPE_LOWER = BlocksHelper.registerBlock("%s_shallow_slope_lower".formatted(blockName),
-                properties -> new StairBlock(base.defaultBlockState(), StandardProperties.stoneProperties(properties, base.defaultMapColor()).noOcclusion()));
+                properties -> new ShallowSlopeLower(base.defaultBlockState(), StandardProperties.stoneProperties(properties, base.defaultMapColor()).noOcclusion()));
         CreativeTabsHelper.accept(CreativeTabsHelper.RIVERSIDE_TAB, SHALLOW_SLOPE_LOWER);
     }
 
@@ -123,12 +125,21 @@ public class StoneWorkSet {
 
     private void shallowSlopeUpper(Block base, String blockName) {
         SHALLOW_SLOPE_UPPER = BlocksHelper.registerBlock("%s_shallow_slope_upper".formatted(blockName),
-                properties -> new StairBlock(base.defaultBlockState(), StandardProperties.stoneProperties(properties, base.defaultMapColor()).noOcclusion()));
+                properties -> new ShallowSlopeUpper(base.defaultBlockState(), StandardProperties.stoneProperties(properties, base.defaultMapColor()).noOcclusion()));
         CreativeTabsHelper.accept(CreativeTabsHelper.RIVERSIDE_TAB, SHALLOW_SLOPE_UPPER);
     }
 
     public Block shallowSlopeUpper() {
         return SHALLOW_SLOPE_UPPER;
+    }
+
+    public StoneWorkSet textureMapping(TextureMapping textureMapping) {
+        this.textureMapping = textureMapping;
+        return this;
+    }
+
+    public TextureMapping textureMapping() {
+        return this.textureMapping;
     }
 
     public StoneWorkSet(Block base, String blockName) {
@@ -143,5 +154,6 @@ public class StoneWorkSet {
         shallowSlopeLower(base, blockName);
         shallowSlopeUpper(base, blockName);
 
+        this.textureMapping = TextureMapping.defaultTexture(base);
     }
 }

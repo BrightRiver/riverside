@@ -6,6 +6,7 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import org.jspecify.annotations.NonNull;
+import river.riverside.core.generators.StoneWorks;
 import river.riverside.core.instructions.ModelInstruction;
 
 import java.util.ArrayList;
@@ -54,6 +55,9 @@ public class ModelProvider extends FabricModelProvider {
                 case WOOD_FAMILY:
                     BlockModelGenerators.BlockFamilyProvider woodFamily = blockModelGenerators.family(instruction.block());
                     woodFamily.generateFor(instruction.blockFamily());
+                    break;
+                case STONE_WORKS:
+                    StoneWorks.generate(blockModelGenerators, instruction.stoneWorkSet());
                     break;
             }
         }

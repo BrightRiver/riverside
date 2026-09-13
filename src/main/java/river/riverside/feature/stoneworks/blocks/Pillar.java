@@ -8,7 +8,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
 
-public class Pillar extends Block {
+public class Pillar extends TransparentBlock  {
 
 //    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 private static final VoxelShape SHAPE = Block.box(
@@ -19,7 +19,10 @@ private static final VoxelShape SHAPE = Block.box(
     public Pillar(Properties properties) {
         super(properties);
     }
-
+    @Override
+    protected boolean useShapeForLightOcclusion(final BlockState state) {
+        return true;
+    }
 
     @Override
     protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
